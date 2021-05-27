@@ -6,6 +6,7 @@ MyUser= get_user_model()
 class Place(models.Model):
     name = models.CharField(max_length=70)
     address = models.CharField(max_length=100, blank=True, null=True)
+    main_image = models.ImageField(upload_to='main_place')
     info = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -14,6 +15,7 @@ class Place(models.Model):
 class Lodging(models.Model):
     name = models.CharField(max_length=70)
     address = models.CharField(max_length=100, blank=True, null=True)
+    main_image = models.ImageField(upload_to='main_lodging')
     average_check = models.DecimalField(decimal_places=2, max_digits=12)
 
     def __str__(self):
@@ -22,6 +24,7 @@ class Lodging(models.Model):
 class Catering(models.Model):
     name = models.CharField(max_length=70)
     address = models.CharField(max_length=100, blank=True, null=True)
+    main_image = models.ImageField(upload_to='main_catering')
     average_check = models.DecimalField(decimal_places=2, max_digits=12)
 
     def __str__(self):
