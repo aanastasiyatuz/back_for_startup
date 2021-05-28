@@ -86,8 +86,6 @@ SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 SECURE_HSTS_PRELOAD = True
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
@@ -178,12 +176,14 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'account.MyUser'
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 # Heroku: Update database configuration from $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
