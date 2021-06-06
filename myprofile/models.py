@@ -6,6 +6,7 @@ from django.utils.text import slugify
 MyUser = get_user_model()
 
 class ProfileProvider(models.Model):
+    id = models.BigIntegerField(primary_key = True)
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE, related_name='provider')
     email = models.CharField(max_length=50, unique=True)
     avatar = models.ImageField(upload_to='providers', default='default-avatar.jpg')
@@ -21,6 +22,7 @@ class ProfileProvider(models.Model):
         super().save(*args, **kwargs)
 
 class ProfileClient(models.Model):
+    id = models.BigIntegerField(primary_key = True)
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE, related_name='client')
     email = models.CharField(max_length=50, unique=True)
     avatar = models.ImageField(upload_to='clients', default='default-avatar.jpg')
