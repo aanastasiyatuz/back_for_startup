@@ -6,13 +6,13 @@ from django.contrib.auth.models import AbstractUser
 class MyUserManager(BaseUserManager):
     use_in_migrations = True
 
+
     def create_user(self, email, password, **extra_fields):
         if not email:
             raise ValueError('Email is not provided!')
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
-        user.is_active = True
         user.save(using=self._db)
         return user
 
@@ -34,7 +34,6 @@ STATUS_CHOICES = (
 )
 
 class MyUser(AbstractUser):
-    id = models.BigIntegerField(primary_key = True)
     username = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20, null=False, blank=False, unique=True)
