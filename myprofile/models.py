@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.utils.text import slugify
 
 
 MyUser = get_user_model()
@@ -17,7 +16,7 @@ class ProfileProvider(models.Model):
         return self.email
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.user.username)
+        self.slug = self.user.email.split('@')[0]
         super().save(*args, **kwargs)
 
 class ProfileClient(models.Model):
@@ -32,5 +31,5 @@ class ProfileClient(models.Model):
         return self.email
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.user.username)
+        self.slug = self.user.email.split('@')[0]
         super().save(*args, **kwargs)
