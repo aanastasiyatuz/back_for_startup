@@ -34,7 +34,8 @@ STATUS_CHOICES = (
 )
 
 class MyUser(AbstractUser):
-    username = models.CharField(max_length=50, primary_key=True)
+    id = models.BigIntegerField(primary_key = True)
+    username = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20, null=False, blank=False, unique=True)
     status = models.CharField(default='client', max_length=20, choices=STATUS_CHOICES)
