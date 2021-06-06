@@ -26,6 +26,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = MyUser.objects.create_user(**validated_data)
+        if not user.username:
+            user.username = user.email.split('@')[0]
         if user.status == 'provider':
             ProfileProvider.objects.create(user=user, email=user.email)
         else:
