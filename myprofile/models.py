@@ -11,7 +11,7 @@ class ProfileProvider(models.Model):
     avatar = models.ImageField(upload_to='providers', default='default-avatar.jpg')
     country = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
-    slug = models.SlugField(unique=True, blank=True, primary_key=True)
+    slug = models.SlugField(primary_key=True, unique=True, blank=True)
 
     def __str__(self):
         return self.email
@@ -26,7 +26,7 @@ class ProfileClient(models.Model):
     avatar = models.ImageField(upload_to='clients', default='default-avatar.jpg')
     country = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
-    slug = models.SlugField(unique=True, blank=True, primary_key=True)
+    slug = models.SlugField(primary_key=True, unique=True, blank=True)
 
     def __str__(self):
         return self.email
