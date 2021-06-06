@@ -10,7 +10,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MyUser
-        fields = ('username', 'email', 'phone', 'password', 'password_confirmation', 'status')
+        fields = ('email', 'phone', 'password', 'password_confirmation', 'status')
 
     def validate_email(self, email):
         if MyUser.objects.filter(email=email).exists():
@@ -26,8 +26,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = MyUser.objects.create_user(**validated_data)
-        if not user.username:
-            user.username = user.email.split('@')[0]
         if user.status == 'provider':
             ProfileProvider.objects.create(user=user, email=user.email)
         else:
