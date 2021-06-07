@@ -9,4 +9,3 @@ python-decouple
 drf-yasg
 gunicorn
 dj-database-url
-whitenoise

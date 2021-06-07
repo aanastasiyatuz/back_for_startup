@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from decouple import config
 import dj_database_url
-import django_heroku
-
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['back-travel-startup.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -52,7 +50,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,12 +66,10 @@ MIDDLEWARE_CLASSES = (
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://front-travel-startup.herokuapp.com"
 ]
 
 CORS_ORIGIN_REGEX_WHITELIST = [
     'http://localhost:3000',
-    "http://front-travel-startup.herokuapp.com"
 ]
 
 
@@ -187,7 +182,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -199,6 +193,3 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # Heroku: Update database configuration from $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-
-
-django_heroku.settings(locals())
